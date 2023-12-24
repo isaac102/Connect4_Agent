@@ -1,0 +1,31 @@
+ESTIMATE of time to complete assignment: 11 hours
+
+      Time     Time
+Date  Started  Spent Work completed
+----  -------  ----  --------------
+12/16  6:00pm   1:30  review part of lecture on amaf, alpha amaf, and rave. implement basic connect4 game that is two playered, finish game besides scoring
+
+12/17  1:00pm  3:30  work on scoring function for connect4. find bug and rework function. review my work from mcts assignment and copy my mcts code. edit mcts code to get it to fit with connect4 game, and edit connect4 game to make it more compatible with my mcts code, make controller file to handle calling the game to make a player v computer game playable
+
+12/17  7:30pm  2:00 play against my agent with multiple time controls to determine how effective it is (much better than me), find literature to read about amaf and rave to gain greater understanding 
+
+12/18  11:00am  2:30  implement amaf in my code, debug extremely annoying error from tmux 
+
+12/18 2:30pm  3:00 finish rave and amaf, build effective way to test my agants against each other
+
+12/18 7:30pm 3:00 run many tests on my agents with different alpha paramaters for amaf and V values for rave, set tests to run overnight
+
+12/19 10:30   2:30 observe that there is not an obviously statistical difference betweeen regular mcts, alpha-amaf, and rave for my connect four game. run more tests, read my code searching for possible errors multiple times, find new paper to read on alpha or rave to see if I misinterpereted the algorithm, send email to Prof to ask if my results are reasonable
+
+12/19 2:00pm-10:00pm 2:00 run tests on my code while doing other things, reread code and explain my code to my wall to try to find bugs, decide to test amaf and rave using the amaf value with or without the exploration term found in the ucb formula to determine what changes, set tests to run overnight
+
+12/20 11:00am 4:00 observe tests, clean code a bit, make epic makefile, clean code more, write project description, add more testing opitons with clear debug output if desired, prapare to submit. I will submit soon
+
+               ----
+               24  TOTAL time spent
+
+I did not discuss my code.
+
+DISCUSSION
+
+Building the connect four game was more time consuiming than expected, but not terrible. The main challenge was determing when a win condition was achieved. My next slowdown was a bug I had with tmux. I am still not sure what happened, but four hours I could not get proper output and it took me a while to determine tmux was the issue. I also spend a lot of time testing, partly because there was no large improvement from amaf or rave, and this concerend me. I also tried to make a very detailed project descripiton. I hope you like my project, happy break!

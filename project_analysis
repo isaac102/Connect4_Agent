@@ -1,0 +1,71 @@
+description of my project:
+
+I made a connect4 game and then made an mcts agent, along with an alpha-amaf agent and a rave agent. My goal was to compare the agents and see how helpful alpha-amaf and rave are. In my tests, it seemed like alpha-amaf may be slightly better depending on the alpha vale, and rave may also be slightly better depending on the parameter, but I could not run enough tests to get clear statistical significance. 
+
+I tested my agents by playing them all against regular mcts as a baseline, always with the same time control for both agents. I tried this with multiple time controls, but mostly with .1 seconds per move for each agent. I also played against the agents myself to evaluate their skills. I decided not to vary the time between two agents playing against each other because I felt my testing time was better spent on testing more hyperparameters for rave and amaf, and for varying the time control for both. 
+
+My observations based on the output were that there is not a large percent difference in ability between the agents, but I did not have time to confidently identify a small difference.
+
+This makes sense to me. The major assumption of amaf is that moves good in one position are likely good in another position. This assumption may be valid some of the time in connect four, but move order often matters a lot in connect four. For example, there are often time-sensitive threats to deal with, so making a different move that is good later may not make sense. That said, in these cases the extra alpha updates are unlikely to skew the output. As a result, amaf is mostly changing the moves when there is no strong indication for the moves, which may be a close to random change so would probably not harm the algorithm significantly.
+
+As a result, it seems like amaf and rave should not make the code much worse, but they should help converge slightly more quickly, so they may be a slight improvement. Note, for my regular mcts implementation, my code still does the overhead calculations for amaf, it just does not use them. This is so that I can determine if the amaf heuristics and rave heuristics are useful at all, rather than if they are worth the computation cost.
+
+I also considered adding more heuristics such as favoring center play, but my observation in playing the agents with greater time control is that they consistently make optimal early moves (center moves) and generally go in the center when all else is equal. Additionally, the agents with a large (over 2 second) time control are better than me so heuristics I devised may not necessarily be improvements.
+
+I was also curious how output differs if the amaf value is calculated with the ucb formula, or just the average reward. As expected, amaf is very poor with a heigh alpha when ignoring the exploration term for the amaf value calculations. However, I was surprised to find that with an alpha of .5, calculating the amaf value as average reward rather than with the ucb formula works similarly to amaf based on the ucb formula.
+
+My test results were as follows, the output here is explained in the comments of my makefile:
+
+(((1, 0, None), (1, 0.8, None), 1000), {'mc_policy': 464, 'mc_policy1': 487, 'tie': 49})
+(((1, 0, None), (1, 0.5, None), 1000), {'mc_policy': 493, 'mc_policy1': 457, 'tie': 50})
+(((1, 0, None), (1, 0.3, None), 1000), {'mc_policy': 480, 'mc_policy1': 474, 'tie': 46})
+
+((0.1, 0, None), (0.1, 0.5, 8), 1000)
+{'mc_policy': 452, 'mc_policy1': 505, 'tie': 43}
+0.505
+((0.1, 0, None), (0.1, 0.5, 10), 1000)
+{'mc_policy': 470, 'mc_policy1': 493, 'tie': 37}
+0.493
+((0.1, 0, None), (0.1, 0.5, 12), 1000)
+{'mc_policy': 477, 'mc_policy1': 483, 'tie': 40}
+0.483
+((0.1, 0, None), (0.1, 0.5, 14), 1000)
+{'mc_policy': 496, 'mc_policy1': 462, 'tie': 42}
+0.462
+((0.1, 0, None), (0.1, 0.5, 16), 1000)
+{'mc_policy': 467, 'mc_policy1': 490, 'tie': 43}
+0.49
+((0.1, 0, None), (0.1, 0.5, 18), 1000)
+{'mc_policy': 527, 'mc_policy1': 442, 'tie': 31}
+0.442
+((0.1, 0, None), (0.1, 0.5, 20), 1000)
+{'mc_policy': 467, 'mc_policy1': 491, 'tie': 42}
+0.491
+((0.1, 0, None), (0.1, 0.5, 22), 1000)
+{'mc_policy': 471, 'mc_policy1': 484, 'tie': 45}
+0.484
+((0.1, 0, None), (0.1, 0.5, 24), 1000)
+{'mc_policy': 464, 'mc_policy1': 498, 'tie': 38}
+0.498
+((0.1, 0, None), (0.1, 0.5, 26), 1000)
+{'mc_policy': 492, 'mc_policy1': 476, 'tie': 32}
+0.476
+((0.1, 0, None), (0.1, 0.5, 28), 1000)
+{'mc_policy': 494, 'mc_policy1': 458, 'tie': 48}
+0.458
+
+(((0.001, 0, None), (0.001, 0.8, None), 10000), {'mc_policy': 5019, 'mc_policy1': 4934, 'tie': 47})
+
+(((1, 0, None), (5, 0, None), 10), {'mc_policy': 2, 'mc_policy1': 8, 'tie': 0})
+(((1, 0, None), (5, 0, None), 10), {'mc_policy': 4, 'mc_policy1': 5, 'tie': 1})
+
+(((0.1, 0, None), (0.1, 0.5, None, 0), 10000), {'mc_policy': 4810, 'mc_policy1': 4809, 'tie': 381})
+
+(((0.1, 0, None), (0.1, 0.5, None), 10000), {'mc_policy': 4772, 'mc_policy1': 4851, 'tie': 377})
+
+(((0.1, 0, None), (0.1, 0.5, 4), 10000), {'mc_policy': 4795, 'mc_policy1': 4798, 'tie': 407})
+
+(((0.1, 0, None), (0.1, 0.3, 8), 10000), {'mc_policy': 4762, 'mc_policy1': 4851, 'tie': 387})
+
+(((1, 0, None), (1, 0.5, 8), 1000), {'mc_policy': 485, 'mc_policy1': 469, 'tie': 46})
+
