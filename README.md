@@ -1,1 +1,11 @@
 run 'make' to get instructions on using this agent. You can play against an agent or play agents against each other.
+
+My project is implementing mcts, alpha-amaf, and rave for connect4.
+To get my detailed analysis of my project, run: make analysis
+To run mcts vs mcts, run make mcts-mcts
+To run mcts vs rave, run make mcts-rave
+To run mcts vs alpha-amaf, run make mcts-amaf
+To run customised tests, run make custom
+To play against my agent, run make human
+To run amaf with a lot of debug output, run make amaf-debug
+All of my tests can be customised to some degree, and I explain how to customize each in the comment for that command
