@@ -8,5 +8,4 @@ To play against my agent, run make human
 To run amaf with a lot of debug output, run make amaf-debug
 All of my tests can be customised to some degree, and I explain how to customize each in the comment for that command
 
-I hope you enjoy this project, and have a great break!
 
